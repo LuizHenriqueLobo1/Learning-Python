@@ -5,7 +5,7 @@ def clearDirectory(path):
 	directoryData = os.listdir(path)
 	countExcluded = 0
 
-	print("Apagando arquivos...")
+	print(f"{os.path.dirname(path)}")
 	for index in range(len(directoryData)):
 		try:
 			os.remove(path + directoryData[index])
@@ -18,4 +18,3 @@ def clearDirectory(path):
 
 clearDirectory(f"C:/Users/{getpass.getuser()}/AppData/Local/Temp/")
 clearDirectory("C:/Windows/Prefetch/")
-clearDirectory("C:/Windows/SoftwareDistribution/Download")
