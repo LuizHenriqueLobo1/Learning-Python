@@ -1,20 +1,27 @@
 import os
 import getpass
+import shutil
 
 def clearDirectory(path):
-	directoryData = os.listdir(path)
-	countExcluded = 0
+	directory = os.listdir(path)
+	countFiles = 0
+	countDirs  = 0
 
-	print(f"{os.path.dirname(path)}")
-	for index in range(len(directoryData)):
+	print(f"ROOT DIRECTORY -> ({path})")
+	for data in directory:
 		try:
-			os.remove(path + directoryData[index])
-			print(f"{directoryData[index]} apagado com sucesso.")
-			countExcluded += 1
+			if os.path.isdir(path + data):
+				print(f"DELETED DIRECTORY -> ({data})")
+				shtil.rmtree(path + data)
+				countDirs += 1
+			else:
+				print(f"DELETED FILE -> ({data})")
+				os.remove(path + data)
+				countExcluded += 1
 		except:
-			print(f"{directoryData[index]} não pôde ser apagado.")
+			print(f"COULD BE NOT DELETED -> ({data})")
 
-	print(f"{countExcluded} arquivos apagados.")
+	print(f"AMOUNT OF DELETED FILES -> ({countFiles})")
+	print(f"AMOUNT OF DELETED DIRS  -> ({countDirs})")
 
 clearDirectory(f"C:/Users/{getpass.getuser()}/AppData/Local/Temp/")
-clearDirectory("C:/Windows/Prefetch/")
